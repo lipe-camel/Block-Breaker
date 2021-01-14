@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-
+    //    //config params
     [SerializeField] float horizontalScreenUnits = 16f;
     [SerializeField] float minxPos = 1f;
     [SerializeField] float maxPos = 15f;
 
-
     void Update()
     {
-        float getMouseXPos = Input.mousePosition.x / Screen.width * horizontalScreenUnits;
-        Vector2 paddlePos = new Vector2(transform.position.x, transform.position.y);
-        paddlePos.x = Mathf.Clamp(getMouseXPos, minxPos, maxPos);
-        transform.position = paddlePos;
+        ManagePaddleMovement();
+    }
+
+    private void ManagePaddleMovement()
+    {
+        float getMouseXPos = Input.mousePosition.x / Screen.width * horizontalScreenUnits;      //for the number to be between zero and 1, then multiplied for the horizontal unity units
+        Vector2 paddlePos = gameObject.transform.position;                                      //also can be written new Vector2(transform.position.x, transform.position.y)
+        paddlePos.x = Mathf.Clamp(getMouseXPos, minxPos, maxPos);                               //calculate the x position
+        transform.position = paddlePos;                                                         //applying the x position
     }
 }

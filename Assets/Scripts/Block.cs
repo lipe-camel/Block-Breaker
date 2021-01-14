@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Block : MonoBehaviour
 {
 
     //config params
-    [SerializeField] AudioClip[] destroySound;
+    [SerializeField] AudioClip[] destroySounds;
 
     //cached component references
     Level level;
@@ -25,7 +23,7 @@ public class Block : MonoBehaviour
 
     private void ManageBlockDestruction()
     {
-        AudioClip clip = destroySound[Random.Range(0, destroySound.Length)];
+        AudioClip clip = destroySounds[Random.Range(0, destroySounds.Length)];
 
         AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
         level.CountBreakedBlocks();

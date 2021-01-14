@@ -1,45 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-
+    //state
     int currentSceneIndex;
-
 
     private void Update()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        if (Debug.isDebugBuild)
-        {
-            ManageDebugInputs();
-        }
     }
-
-    private void ManageDebugInputs()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadNextScene();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            LoadPreviousScene();
-        }
-
-    }
-
 
     public void LoadNextScene()
     {
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
 
-    private void LoadPreviousScene()
+    public void LoadPreviousScene()
     {
         SceneManager.LoadScene(currentSceneIndex - 1);
     }
@@ -47,6 +24,11 @@ public class SceneLoader : MonoBehaviour
     public void LoadStartScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadLoseScene()
+    {
+        SceneManager.LoadScene("Lose Screen");
     }
 
     public void QuitGame()

@@ -24,7 +24,7 @@ public class Ball : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
 
-        paddleToBallVector = transform.position - paddle1.transform.position;
+        paddleToBallVector = transform.position - paddle1.transform.position; //this is to calculate the difference between the paddle and ball positions
     }
 
     void Update()
@@ -38,7 +38,7 @@ public class Ball : MonoBehaviour
 
     private void FollowPaddle()
     {
-        Vector2 paddlePos = new Vector2(paddle1.transform.position.x, paddle1.transform.position.y);
+        Vector2 paddlePos = paddle1.transform.position;
         transform.position = paddlePos + paddleToBallVector;
     }
 
