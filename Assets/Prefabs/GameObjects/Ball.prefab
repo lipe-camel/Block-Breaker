@@ -139,11 +139,9 @@ MonoBehaviour:
   xLaunchVelocity: 2
   yLaunchVelocity: 10
   ballSounds:
-  - {fileID: 8300000, guid: 140c580072a02c74584862e1a285588a, type: 3}
+  - {fileID: 8300000, guid: 59393e9d08872634480d68e783d54b74, type: 3}
   - {fileID: 8300000, guid: 0480788f765f010419af50eae39c38dc, type: 3}
   - {fileID: 8300000, guid: fc48a64e93538444191041d6a8ab4f70, type: 3}
-  - {fileID: 8300000, guid: 59393e9d08872634480d68e783d54b74, type: 3}
-  - {fileID: 8300000, guid: b4d283d909d809344b6ba465429025f1, type: 3}
 --- !u!82 &216505303768612874
 AudioSource:
   m_ObjectHideFlags: 0
