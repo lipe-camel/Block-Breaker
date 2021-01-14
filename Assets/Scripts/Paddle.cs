@@ -10,12 +10,6 @@ public class Paddle : MonoBehaviour
     [SerializeField] float maxPos = 15f;
 
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         float getMouseXPos = Input.mousePosition.x / Screen.width * horizontalScreenUnits;
