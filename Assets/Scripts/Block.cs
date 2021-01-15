@@ -2,28 +2,37 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-
     //config params
     [SerializeField] AudioClip[] destroySounds;
     [SerializeField] GameObject BlockSparklesVFX;
     [SerializeField] float destroyVFXTime = 1f;
 
-
     //cached component references
     Level level;
-    GameSession gameStatus;
+    GameSession gameSession;
 
     private void Start()
     {
         level = FindObjectOfType<Level>();              //this is needed so it can be linked to other game object (this is what I need to implement in other game projects)
-        gameStatus = FindObjectOfType<GameSession>();
+        gameSession = FindObjectOfType<GameSession>();
 
-        level.CountBreakableBlocks();
+        CountBreakableBlocks();
+    }
+
+    private void CountBreakableBlocks()
+    {
+        if (gameObject.tag == "Breakable")
+        {
+            level.CountBlocks();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ManageBlockDestruction();
+        if(gameObject.tag == "Breakable")
+        {
+            ManageBlockDestruction();
+        }
     }
 
     private void ManageBlockDestruction()
@@ -31,7 +40,7 @@ public class Block : MonoBehaviour
         PlayDestroyBlockSFX();
         PlayDestroyBlockVFX();
         level.CountBreakedBlocks();
-        gameStatus.AddToScore();
+        gameSession.AddToScore();
         Destroy(gameObject);
     }
 

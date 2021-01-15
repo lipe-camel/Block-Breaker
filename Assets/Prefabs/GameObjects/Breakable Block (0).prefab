@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1306389465329272657}
   m_Layer: 0
   m_Name: Block (0)
-  m_TagString: Block
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,3 +126,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 140c580072a02c74584862e1a285588a, type: 3}
   - {fileID: 8300000, guid: b4d283d909d809344b6ba465429025f1, type: 3}
   BlockSparklesVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
+  destroyVFXTime: 2

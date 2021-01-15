@@ -5,7 +5,7 @@ public class Level : MonoBehaviour
     //state
     [SerializeField] int breakableBlocks; //serialize for debugging
 
-    public void CountBreakableBlocks()
+    public void CountBlocks()
     {
         breakableBlocks++;
     }
