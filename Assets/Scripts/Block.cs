@@ -3,9 +3,17 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     //config params
+    [Header("Audio")]
     [SerializeField] AudioClip[] destroySounds;
+    [Header("Particle")]
     [SerializeField] GameObject BlockSparklesVFX;
     [SerializeField] float destroyVFXTime = 1f;
+    [Header("Sprite")]
+    [SerializeField] int maxHits =3;
+    [SerializeField] Sprite[] hitSprites;
+
+    //state
+    int timesHit = 0;
 
     //cached component references
     Level level;
@@ -31,8 +39,27 @@ public class Block : MonoBehaviour
     {
         if(gameObject.tag == "Breakable")
         {
+            HandleHit();
+        }
+    }
+
+    private void HandleHit()
+    {
+        timesHit++;
+        if (timesHit >= maxHits)
+        {
             ManageBlockDestruction();
         }
+        else
+        {
+            ShowNextHitSprite();
+        }
+    }
+
+    private void ShowNextHitSprite()
+    {
+        int spriteIndex = timesHit - 1;
+        GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
     }
 
     private void ManageBlockDestruction()
