@@ -5,6 +5,9 @@ public class Block : MonoBehaviour
 
     //config params
     [SerializeField] AudioClip[] destroySounds;
+    [SerializeField] GameObject BlockSparklesVFX;
+    [SerializeField] float destroyVFXTime = 1f;
+
 
     //cached component references
     Level level;
@@ -25,11 +28,22 @@ public class Block : MonoBehaviour
 
     private void ManageBlockDestruction()
     {
-        AudioClip clip = destroySounds[Random.Range(0, destroySounds.Length)];
-
-        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+        PlayDestroyBlockSFX();
+        PlayDestroyBlockVFX();
         level.CountBreakedBlocks();
         gameStatus.AddToScore();
         Destroy(gameObject);
+    }
+
+    private void PlayDestroyBlockSFX()
+    {
+        AudioClip clip = destroySounds[Random.Range(0, destroySounds.Length)];
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+    }
+
+    private void PlayDestroyBlockVFX()
+    {
+        GameObject sparkles = Instantiate(BlockSparklesVFX, transform.position, transform.rotation);
+        Destroy(sparkles, destroyVFXTime);
     }
 }

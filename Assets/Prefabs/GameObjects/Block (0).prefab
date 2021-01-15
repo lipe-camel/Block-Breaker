@@ -125,3 +125,4 @@ MonoBehaviour:
   destroySounds:
   - {fileID: 8300000, guid: 140c580072a02c74584862e1a285588a, type: 3}
   - {fileID: 8300000, guid: b4d283d909d809344b6ba465429025f1, type: 3}
+  BlockSparklesVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
