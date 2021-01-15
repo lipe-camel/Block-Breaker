@@ -9,7 +9,6 @@ public class Block : MonoBehaviour
     [SerializeField] GameObject BlockSparklesVFX;
     [SerializeField] float destroyVFXTime = 1f;
     [Header("Sprite")]
-    [SerializeField] int maxHits =3;
     [SerializeField] Sprite[] hitSprites;
 
     //state
@@ -46,6 +45,8 @@ public class Block : MonoBehaviour
     private void HandleHit()
     {
         timesHit++;
+        int maxHits = hitSprites.Length + 1;
+
         if (timesHit >= maxHits)
         {
             ManageBlockDestruction();
@@ -59,7 +60,14 @@ public class Block : MonoBehaviour
     private void ShowNextHitSprite()
     {
         int spriteIndex = timesHit - 1;
-        GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+        if (hitSprites[spriteIndex] != null)
+        {
+            GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+        }
+        else
+        {
+            Debug.LogError(gameObject.name + " sprite is missing from array");
+        }
     }
 
     private void ManageBlockDestruction()
