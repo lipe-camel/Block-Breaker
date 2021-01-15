@@ -6,6 +6,8 @@ public class SceneLoader : MonoBehaviour
     //state
     int currentSceneIndex;
 
+    
+
     private void Update()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -24,6 +26,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadStartScene()
     {
         SceneManager.LoadScene(0);
+        FindObjectOfType<GameSession>().EraseScore();
     }
 
     public void LoadLoseScene()
