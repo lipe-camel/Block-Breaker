@@ -8,10 +8,12 @@ public class Block : MonoBehaviour
 
     //cached component references
     Level level;
+    GameStatus gameStatus;
 
     private void Start()
     {
         level = FindObjectOfType<Level>();              //this is needed so it can be linked to other game object (this is what I need to implement in other game projects)
+        gameStatus = FindObjectOfType<GameStatus>();
 
         level.CountBreakableBlocks();
     }
@@ -27,6 +29,7 @@ public class Block : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
         level.CountBreakedBlocks();
+        gameStatus.AddToScore();
         Destroy(gameObject);
     }
 }

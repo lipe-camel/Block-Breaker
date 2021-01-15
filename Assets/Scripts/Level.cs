@@ -13,14 +13,6 @@ public class Level : MonoBehaviour
         sceneLoader = FindObjectOfType<SceneLoader>();
     }
 
-    private void Update()
-    {
-        if(breakableBlocks == 0)
-        {
-            sceneLoader.LoadNextScene();
-        }
-    }
-
     public void CountBreakableBlocks()
     {
         breakableBlocks++;
@@ -29,5 +21,9 @@ public class Level : MonoBehaviour
     public void CountBreakedBlocks()
     {
         breakableBlocks--;
+        if (breakableBlocks == 0)
+        {
+            sceneLoader.LoadNextScene();
+        }
     }
 }
