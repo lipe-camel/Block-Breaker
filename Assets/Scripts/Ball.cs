@@ -7,7 +7,10 @@ public class Ball : MonoBehaviour
     [Header("Velocity")]
     [SerializeField] float xLaunchVelocity = 2f;
     [SerializeField] float yLaunchVelocity = 10f;
-    //[SerializeField] float bounceRandomFactor = 0.2f;
+    [SerializeField] float minBounceAngle = 10f;
+    [Header("Rotation")]
+    [SerializeField] float rotationFactor = 1f;
+    [SerializeField] float torqueLimit = 10f;
     [Header("Audio")]
     [SerializeField] AudioClip[] ballSounds;
 
@@ -55,12 +58,62 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Vector2 velocityTweak = new Vector2(Random.Range(0f, ), Random.Range(0f, bounceRandomFactor));
-        if (hasStarted && collision.gameObject.tag!="Breakable")
+        AdjustBallVector();
+        AddRotation();
+        PlayDefaultSFX(collision); //for walls and unbreakable blocks
+    }
+
+    private void AdjustBallVector()
+    {
+
+        float bounceAngle = Mathf.Atan2(rigidBody2D.velocity.y, rigidBody2D.velocity.x) * Mathf.Rad2Deg;
+        float magnitude = rigidBody2D.velocity.magnitude;
+
+
+        float newAngle = 0;
+        if (IsNumInRange(bounceAngle, 0, 90))
+        {
+            newAngle = Mathf.Clamp(bounceAngle, minBounceAngle, 90 - minBounceAngle);
+        }
+        else if (IsNumInRange(bounceAngle, 90, 180))
+        {
+            newAngle = Mathf.Clamp(bounceAngle, 90 + minBounceAngle, 180 - minBounceAngle);
+        }
+        else if (IsNumInRange(bounceAngle, -90, 0))
+        {
+            newAngle = Mathf.Clamp(bounceAngle, -90 + minBounceAngle, -minBounceAngle);
+        }
+        else if (IsNumInRange(bounceAngle, -180, -90))
+        {
+            newAngle = Mathf.Clamp(bounceAngle, -180 + minBounceAngle, -90 - minBounceAngle);
+        }
+
+        Vector2 newVelocity = new Vector2(Mathf.Cos(newAngle * Mathf.Deg2Rad), Mathf.Sin(newAngle * Mathf.Deg2Rad)) * magnitude;
+        rigidBody2D.velocity = newVelocity;
+
+    }
+
+    private bool IsNumInRange(float num, float min, float max)
+    {
+        return num >= min && num <= max;
+    }
+
+    private void AddRotation()
+    {
+        if (hasStarted)
+        {
+            float randomTorque = Random.Range(rotationFactor *-1, rotationFactor);
+            rigidBody2D.AddTorque(Mathf.Clamp(randomTorque, torqueLimit*-1, torqueLimit));
+        }
+    }
+
+    private void PlayDefaultSFX(Collision2D collision)
+    {
+        if (hasStarted && collision.gameObject.tag != "Breakable")
         {
             AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
             audioSource.PlayOneShot(clip);
-            //rigidBody2D.velocity += velocityTweak;
         }
     }
+
 }
