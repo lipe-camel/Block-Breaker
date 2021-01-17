@@ -5,6 +5,7 @@ public class Ball : MonoBehaviour
 
     //config params
     [SerializeField] Paddle paddle1;
+    [SerializeField] float randomFactor = 0.2f;
     [Header("Launch")]
     [SerializeField] float xLaunchVelocity = 2f;
     [SerializeField] float yLaunchVelocity = 10f;
@@ -16,12 +17,12 @@ public class Ball : MonoBehaviour
     bool hasStarted = false;
 
     //cached component references (so this valor is found only once)
-    Rigidbody2D rigidBody;
+    Rigidbody2D rigidBody2D;
     AudioSource audioSource;
 
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
 
         paddleToBallVector = transform.position - paddle1.transform.position; //this is to calculate the difference between the paddle and ball positions
@@ -47,16 +48,19 @@ public class Ball : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             hasStarted = true;
-            rigidBody.velocity = new Vector2(xLaunchVelocity, yLaunchVelocity);
+            rigidBody2D.velocity = new Vector2(xLaunchVelocity, yLaunchVelocity);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector2 velocityTweak = new Vector2(Random.Range(0f, randomFactor), Random.Range(0f, randomFactor));
+
         if (hasStarted && collision.gameObject.tag!="Breakable")
         {
             AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
             audioSource.PlayOneShot(clip);
+            rigidBody2D.velocity += velocityTweak;
         }
     }
 

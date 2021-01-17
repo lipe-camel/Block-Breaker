@@ -7,6 +7,16 @@ public class Paddle : MonoBehaviour
     [SerializeField] float minxPos = 1f;
     [SerializeField] float maxPos = 15f;
 
+    //cached references
+    Debugger debugger;
+    Ball ball;
+
+    private void Start()
+    {
+        debugger = FindObjectOfType<Debugger>();
+        ball = FindObjectOfType<Ball>();
+    }
+
     void Update()
     {
         ManagePaddleMovement();
@@ -14,9 +24,21 @@ public class Paddle : MonoBehaviour
 
     private void ManagePaddleMovement()
     {
-        float getMouseXPos = Input.mousePosition.x / Screen.width * horizontalScreenUnits;      //for the number to be between zero and 1, then multiplied for the horizontal unity units
         Vector2 paddlePos = gameObject.transform.position;                                      //also can be written new Vector2(transform.position.x, transform.position.y)
-        paddlePos.x = Mathf.Clamp(getMouseXPos, minxPos, maxPos);                               //calculate the x position
+        paddlePos.x = Mathf.Clamp(GetXPos(), minxPos, maxPos);                                  //calculate the x position and also limit the x position
         transform.position = paddlePos;                                                         //applying the x position
+    }
+
+    private float GetXPos()
+    {
+        if (debugger.IsAutoplayActive())
+        {
+            return ball.transform.position.x;                                                       //used for debugging
+        }
+        else
+        {
+            float getMouseXPos = Input.mousePosition.x / Screen.width * horizontalScreenUnits;      //for the number to be between zero and 1, then multiplied for the horizontal unity units
+            return getMouseXPos;
+        }
     }
 }
