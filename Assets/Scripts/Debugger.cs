@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class Debugger : MonoBehaviour
 {
-    //state
-    bool isAutoplayActive = false;
-
     //cached component references
     SceneLoader sceneLoader;
     LoseCollider loseCollider;
+    Paddle paddle;
 
     private void Start()
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
         loseCollider = FindObjectOfType<LoseCollider>();
+        paddle = FindObjectOfType<Paddle>();
     }
 
     void Update()
@@ -50,16 +49,11 @@ public class Debugger : MonoBehaviour
         }
     }
 
-    public void ToggleAutoplay()
+    private void ToggleAutoplay()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            isAutoplayActive = !isAutoplayActive;
+            paddle.ToggleAutoplay();
         }
-    }
-
-    public bool IsAutoplayActive()
-    {
-        return isAutoplayActive;
     }
 }
