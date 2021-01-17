@@ -16,12 +16,13 @@ public class Block : MonoBehaviour
 
     //cached component references
     Level level;
-    GameSession gameSession;
+    ScoreSystem scoreSystem;
 
     private void Start()
     {
-        level = FindObjectOfType<Level>();              //this is needed so it can be linked to other game object (this is what I need to implement in other game projects)
-        gameSession = FindObjectOfType<GameSession>();
+        //assigning valors of cached references
+        level = FindObjectOfType<Level>();
+        scoreSystem = FindObjectOfType<ScoreSystem>();
 
         CountBreakableBlocks();
     }
@@ -46,7 +47,6 @@ public class Block : MonoBehaviour
     {
         timesHit++;
         int maxHits = hitSprites.Length + 1;
-
         if (timesHit >= maxHits)
         {
             ManageBlockDestruction();
@@ -75,7 +75,7 @@ public class Block : MonoBehaviour
         PlayDestroyBlockSFX();
         PlayDestroyBlockVFX();
         level.CountBreakedBlocks();
-        gameSession.AddToScore();
+        scoreSystem.AddToScore();
         Destroy(gameObject);
     }
 

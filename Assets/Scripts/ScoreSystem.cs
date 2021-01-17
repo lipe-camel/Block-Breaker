@@ -1,11 +1,9 @@
 using UnityEngine;
 using TMPro;
 
-public class GameSession : MonoBehaviour
+public class ScoreSystem : MonoBehaviour
 {
     //config params
-    [SerializeField][Range(0f,10f)] float gameSpeed = 1f;
-    [Header("Score")]
     [SerializeField] int pointsPerBlockDestroyed = 10;
     [SerializeField] TextMeshProUGUI scoreText;
 
@@ -14,7 +12,7 @@ public class GameSession : MonoBehaviour
 
     private void Awake() //singleton pattern
     {
-        int gameStatusCount = FindObjectsOfType<GameSession>().Length;
+        int gameStatusCount = FindObjectsOfType<ScoreSystem>().Length;
         if (gameStatusCount > 1)
         {
             gameObject.SetActive(false);
@@ -48,8 +46,4 @@ public class GameSession : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void Update()
-    {
-        Time.timeScale = gameSpeed;
-    }
 }

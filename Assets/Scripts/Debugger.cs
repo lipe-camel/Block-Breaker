@@ -4,14 +4,10 @@ public class Debugger : MonoBehaviour
 {
     //cached component references
     SceneLoader sceneLoader;
-    LoseCollider loseCollider;
-    Paddle paddle;
 
     private void Start()
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
-        loseCollider = FindObjectOfType<LoseCollider>();
-        paddle = FindObjectOfType<Paddle>();
     }
 
     void Update()
@@ -45,7 +41,7 @@ public class Debugger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            loseCollider.ToggleLosing();
+            FindObjectOfType<LoseCollider>().ToggleIsTrigger();
         }
     }
 
@@ -53,7 +49,7 @@ public class Debugger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            paddle.ToggleAutoplay();
+            FindObjectOfType<Paddle>().ToggleAutoplay();
         }
     }
 }

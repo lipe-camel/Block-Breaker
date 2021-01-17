@@ -9,7 +9,6 @@ public class Paddle : MonoBehaviour
 
     //state
     bool autoplayIsActive;
-    float posX;
 
     //cached references
     Ball ball;
@@ -26,21 +25,20 @@ public class Paddle : MonoBehaviour
 
     private void ManagePaddleMovement()
     {
-        Vector2 paddlePos = gameObject.transform.position;                                      //also can be written new Vector2(transform.position.x, transform.position.y)
-        paddlePos.x = Mathf.Clamp(posX, minxPos, maxPos);                                  //calculate the x position and also limit the x position
-        transform.position = paddlePos;                                                         //applying the x position
+        Vector2 paddlePos = gameObject.transform.position;                                       //also can be written new Vector2(transform.position.x, transform.position.y)
+        paddlePos.x = Mathf.Clamp(GetXPos(), minxPos, maxPos);                                        //calculate the x position and also limit the x position
+        transform.position = paddlePos;                                                          //applying the x position
     }
 
-    private void GetXPos()
+    private float GetXPos()
     {
         if (autoplayIsActive)
         {
-            posX = ball.transform.position.x;                                                       //used for debugging
+            return ball.transform.position.x;                                                   //used for debugging
         }
         else
         {
-            float getMouseXPos = Input.mousePosition.x / Screen.width * horizontalScreenUnits;      //for the number to be between zero and 1, then multiplied for the horizontal unity units
-            posX = getMouseXPos;
+            return Input.mousePosition.x / Screen.width * horizontalScreenUnits;                //for the number to be between zero and 1, then multiplied for the horizontal unity units
         }
     }
 

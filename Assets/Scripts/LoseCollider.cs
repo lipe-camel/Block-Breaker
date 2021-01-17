@@ -17,7 +17,7 @@ public class LoseCollider : MonoBehaviour
         sceneLoader.LoadLoseScene();
     }
 
-    public void ToggleLosing() //this is used fo debugging
+    public void ToggleIsTrigger() //this is used fo debugging
     {
         thisCollider2D.isTrigger = !thisCollider2D.isTrigger;
     }
