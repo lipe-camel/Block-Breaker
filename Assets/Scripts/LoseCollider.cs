@@ -14,7 +14,7 @@ public class LoseCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        sceneLoader.LoadLoseScene();
+        sceneLoader.RestartScene();
     }
 
     public void ToggleIsTrigger() //this is used fo debugging
