@@ -2742,7 +2742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6532664980905570194, guid: d576800fced503740a8c956346535c6c, type: 3}
       propertyPath: m_Name
-      value: Game Session
+      value: Score System
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d576800fced503740a8c956346535c6c, type: 3}

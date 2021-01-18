@@ -7,6 +7,7 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] int pointsPerBlockDestroyed = 10;
     [SerializeField] int pointsPerDeath = 10;
     [SerializeField] int percentageOfMinimumScore;
+    [SerializeField] int maxTotalPoints = 999999999;
     [SerializeField] TextMeshProUGUI scoreText;
 
     //status
@@ -47,6 +48,14 @@ public class ScoreSystem : MonoBehaviour
 
     private void ShowCurrentScore()
     {
+        if (currentScore <= 0)
+        {
+            currentScore = 0;
+        }
+        else if (currentScore >= maxTotalPoints)
+        {
+            currentScore = maxTotalPoints;
+        }
         scoreText.text = currentScore.ToString();
     }
 
