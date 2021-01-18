@@ -109,7 +109,7 @@ public class Ball : MonoBehaviour
 
     private void PlayDefaultSFX(Collision2D collision)
     {
-        if (hasStarted && collision.gameObject.tag != "Breakable")
+        if (hasStarted && (collision.gameObject.tag == "Untagged"))
         {
             AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
             audioSource.PlayOneShot(clip);

@@ -96,9 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c7608a8058ed143beabf37b1dee358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroySounds:
-  - {fileID: 8300000, guid: 140c580072a02c74584862e1a285588a, type: 3}
-  - {fileID: 8300000, guid: b4d283d909d809344b6ba465429025f1, type: 3}
+  collisionSounds:
+  - {fileID: 8300000, guid: bfd0575cbe7c65248addc0af3051866b, type: 3}
+  - {fileID: 8300000, guid: 1359e0828d0f3674787d170e8dadee61, type: 3}
+  destroySounds: []
   BlockSparklesVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
   destroyVFXTime: 1
   hitSprites: []
