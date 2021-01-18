@@ -4,6 +4,8 @@ public class Level : MonoBehaviour
 {
     //state
     int breakableBlocks;
+    [SerializeField] float timeUntillNextLevel = 1f;
+    [SerializeField] AudioClip victorySound;
 
     public void CountBlocks()
     {
@@ -15,7 +17,14 @@ public class Level : MonoBehaviour
         breakableBlocks--;
         if (breakableBlocks <= 0)
         {
-            FindObjectOfType<SceneLoader>().LoadNextScene();
+            AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position);
+            FindObjectOfType<Ball>().GetComponent<Rigidbody2D>().gravityScale = 1;
+            Invoke("LoadNextScene", timeUntillNextLevel);
         }
+    }
+
+    private void LoadNextScene()
+    {
+        FindObjectOfType<SceneLoader>().LoadNextScene();
     }
 }

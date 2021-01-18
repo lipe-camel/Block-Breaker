@@ -6,6 +6,7 @@ public class ScoreSystem : MonoBehaviour
     //config params
     [SerializeField] int pointsPerBlockDestroyed = 10;
     [SerializeField] int pointsPerDeath = 10;
+    [SerializeField] int percentageOfMinimumScore;
     [SerializeField] TextMeshProUGUI scoreText;
 
     //status
@@ -33,7 +34,8 @@ public class ScoreSystem : MonoBehaviour
 
     public void AddToScore()
     {
-        currentScore += pointsPerBlockDestroyed; //it's "currentScore = currentScore + pointsPerBlockDestroyed;" refactored
+        int randomScore = Random.Range(percentageOfMinimumScore % pointsPerBlockDestroyed, pointsPerBlockDestroyed);
+        currentScore += randomScore;
         ShowCurrentScore();
     }
 
@@ -49,7 +51,8 @@ public class ScoreSystem : MonoBehaviour
 
     public void LoseScore()
     {
-        currentScore -= pointsPerDeath;
+        int randomScore = Random.Range(percentageOfMinimumScore % pointsPerDeath, pointsPerDeath);
+        currentScore -= randomScore;
         ShowCurrentScore();
     }
 }

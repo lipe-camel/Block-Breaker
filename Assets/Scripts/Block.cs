@@ -75,6 +75,8 @@ public class Block : MonoBehaviour
         ShowNextHitSprite();
         PlayDamageSFX();
         PlayDamageVFX();
+        scoreSystem.AddToScore();
+
     }
 
     private void PlayDamageSFX()

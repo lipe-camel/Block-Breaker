@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017f900815d477345813dd80507f8b69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntillNextLevel: 1.5
+  victorySound: {fileID: 8300000, guid: be5e2361e37ff6643a34abf495356991, type: 3}
 --- !u!114 &387246680761687112
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: e19f11cc42358234bb1c8e8c054f7a63, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -142,9 +142,9 @@ MonoBehaviour:
   rotationFactor: 3
   torqueLimit: 5
   ballSounds:
-  - {fileID: 8300000, guid: 59393e9d08872634480d68e783d54b74, type: 3}
-  - {fileID: 8300000, guid: 0480788f765f010419af50eae39c38dc, type: 3}
-  - {fileID: 8300000, guid: fc48a64e93538444191041d6a8ab4f70, type: 3}
+  - {fileID: 8300000, guid: 953f09154614db643ae66e046f7e1c3d, type: 3}
+  - {fileID: 8300000, guid: 07a1975f1434bfb4099e9afac3b862d8, type: 3}
+  - {fileID: 8300000, guid: cfe62f4bc6a8ccf4d97b430ed3a8b3c7, type: 3}
 --- !u!82 &216505303768612874
 AudioSource:
   m_ObjectHideFlags: 0

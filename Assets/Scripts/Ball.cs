@@ -22,12 +22,15 @@ public class Ball : MonoBehaviour
     Rigidbody2D rigidBody2D;
     AudioSource audioSource;
     Paddle paddle;
+    ScoreSystem scoreSystem;
+
 
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         paddle = FindObjectOfType<Paddle>();
+        scoreSystem = FindObjectOfType<ScoreSystem>();
 
         paddleToBallVector = transform.position - paddle.transform.position; //this is to calculate the difference between the paddle and ball positions
     }
@@ -51,6 +54,7 @@ public class Ball : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            rigidBody2D.freezeRotation = false;
             hasStarted = true;
             rigidBody2D.velocity = new Vector2(xLaunchVelocity, yLaunchVelocity);
         }
@@ -118,6 +122,8 @@ public class Ball : MonoBehaviour
 
     public void ManageDeath()
     {
+        rigidBody2D.rotation = 0; rigidBody2D.freezeRotation = true;
         hasStarted = false;
+        scoreSystem.LoseScore();
     }
 }
