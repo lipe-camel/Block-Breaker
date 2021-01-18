@@ -4,17 +4,17 @@ public class LoseCollider : MonoBehaviour
 {
     //cached component references
     Collider2D thisCollider2D;
-    SceneLoader sceneLoader;
+    Ball ball;
 
     private void Start()
     {
-        sceneLoader = FindObjectOfType<SceneLoader>();
+        ball = FindObjectOfType<Ball>();
         thisCollider2D = GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        sceneLoader.RestartScene();
+        ball.ManageDeath();
     }
 
     public void ToggleIsTrigger() //this is used fo debugging

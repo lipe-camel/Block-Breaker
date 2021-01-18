@@ -5,6 +5,7 @@ public class ScoreSystem : MonoBehaviour
 {
     //config params
     [SerializeField] int pointsPerBlockDestroyed = 10;
+    [SerializeField] int pointsPerDeath = 10;
     [SerializeField] TextMeshProUGUI scoreText;
 
     //status
@@ -46,4 +47,9 @@ public class ScoreSystem : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void LoseScore()
+    {
+        currentScore -= pointsPerDeath;
+        ShowCurrentScore();
+    }
 }

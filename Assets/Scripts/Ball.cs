@@ -116,4 +116,8 @@ public class Ball : MonoBehaviour
         }
     }
 
+    public void ManageDeath()
+    {
+        hasStarted = false;
+    }
 }
