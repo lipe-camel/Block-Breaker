@@ -17,10 +17,16 @@ public class Level : MonoBehaviour
         breakableBlocks--;
         if (breakableBlocks <= 0)
         {
-            AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position);
-            FindObjectOfType<Ball>().GetComponent<Rigidbody2D>().gravityScale = 1;
-            Invoke("LoadNextScene", timeUntillNextLevel);
+            WonTheLevel();
         }
+    }
+
+    private void WonTheLevel()
+    {
+        AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position);
+        FindObjectOfType<Ball>().GetComponent<Rigidbody2D>().gravityScale = 1;
+        FindObjectOfType<LoseCollider>().gameObject.SetActive(false);
+        Invoke("LoadNextScene", timeUntillNextLevel);
     }
 
     private void LoadNextScene()

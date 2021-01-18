@@ -16,6 +16,7 @@ public class Block : MonoBehaviour
 
     //state
     int timesHit = 0;
+    bool isOnlyDamage;
 
     //cached component references
     Level level;
@@ -46,11 +47,11 @@ public class Block : MonoBehaviour
         }
         if (gameObject.tag == "Unbreakable" && collision.gameObject.tag == "Ball")
         {
-            HandleUnbreakableHit();
+            PlayUnbreakableSound();
         }
     }
 
-    private void HandleUnbreakableHit()
+    private void PlayUnbreakableSound()
     {
         AudioClip clip = collisionSounds[Random.Range(0, collisionSounds.Length)];
         AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
@@ -59,7 +60,7 @@ public class Block : MonoBehaviour
     private void HandleHit()
     {
         timesHit++;
-        int maxHits = hitSprites.Length + 1;
+        int maxHits = hitSprites.Length + 1; //this is so the life is defined by the number of sprites
         if (timesHit >= maxHits)
         {
             ManageBlockDestruction();
@@ -72,66 +73,63 @@ public class Block : MonoBehaviour
 
     private void ManageBlockDamage()
     {
+        isOnlyDamage = true;
         ShowNextHitSprite();
-        PlayDamageSFX();
-        PlayDamageVFX();
+        PlaySFX();
+        PlayVFX();
         scoreSystem.AddToScore();
-
-    }
-
-    private void PlayDamageSFX()
-    {
-        int randomCollisionSound = Random.Range(0, collisionSounds.Length);
-
-        if (collisionSounds[randomCollisionSound] != null)
-        {
-            AudioClip clip = collisionSounds[randomCollisionSound];
-            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
-        }
-        else
-        {
-            Debug.LogError(gameObject.name + " collision audio is missing from array");
-        }
-    }
-
-    private void PlayDamageVFX()
-    {
-        GameObject vFX = Instantiate(BlockDamageVFX, transform.position + particleOffset, transform.rotation);
-        Destroy(vFX, destroyVFXTime);
-
-    }
-
-    private void ShowNextHitSprite()
-    {
-        int spriteIndex = timesHit - 1;
-        if (hitSprites[spriteIndex] != null)
-        {
-            GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
-        }
-        else
-        {
-            Debug.LogError(gameObject.name + " sprite is missing from array");
-        }
     }
 
     private void ManageBlockDestruction()
     {
-        PlayDestroyBlockSFX();
-        PlayDestroyBlockVFX();
+        isOnlyDamage = false;
+        PlaySFX();
+        PlayVFX();
         level.CountBreakedBlocks();
         scoreSystem.AddToScore();
         Destroy(gameObject);
     }
 
-    private void PlayDestroyBlockSFX()
+    private void ShowNextHitSprite()
     {
-        AudioClip clip = destroySounds[Random.Range(0, destroySounds.Length)];
-        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+        int spriteIndex = timesHit - 1;
+        GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
     }
 
-    private void PlayDestroyBlockVFX()
+    private void PlaySFX()
     {
-        GameObject vFX = Instantiate(BlockDestructionVFX, transform.position + particleOffset, transform.rotation);
+        AudioSource.PlayClipAtPoint(DecideSFXToPlay(), Camera.main.transform.position);
+    }
+
+    private AudioClip DecideSFXToPlay()
+    {
+        AudioClip clip;
+        if (isOnlyDamage)
+        {
+            return clip = collisionSounds[Random.Range(0, collisionSounds.Length)];
+        }
+        else
+        {
+            return clip = destroySounds[Random.Range(0, destroySounds.Length)];
+        }
+    }
+
+    private void PlayVFX()
+    {
+        GameObject vFX = Instantiate(ChooseVFXToPlay(), transform.position + particleOffset, transform.rotation);
         Destroy(vFX, destroyVFXTime);
+    }
+
+    private GameObject ChooseVFXToPlay()
+    {
+        GameObject whatVFX;
+        if (isOnlyDamage)
+        {
+            return whatVFX = BlockDamageVFX;
+        }
+        else
+        {
+            return whatVFX = BlockDestructionVFX;
+        }
     }
 }

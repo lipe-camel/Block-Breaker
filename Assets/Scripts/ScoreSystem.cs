@@ -18,7 +18,7 @@ public class ScoreSystem : MonoBehaviour
         if (gameStatusCount > 1)
         {
             gameObject.SetActive(false);
-            Destroy(gameObject);
+            EraseScore();
         }
         else
         {
@@ -38,6 +38,12 @@ public class ScoreSystem : MonoBehaviour
         currentScore += randomScore;
         ShowCurrentScore();
     }
+    public void LoseScore()
+    {
+        int randomScore = Random.Range(percentageOfMinimumScore % pointsPerDeath, pointsPerDeath);
+        currentScore -= randomScore;
+        ShowCurrentScore();
+    }
 
     private void ShowCurrentScore()
     {
@@ -47,12 +53,5 @@ public class ScoreSystem : MonoBehaviour
     public void EraseScore()
     {
         Destroy(gameObject);
-    }
-
-    public void LoseScore()
-    {
-        int randomScore = Random.Range(percentageOfMinimumScore % pointsPerDeath, pointsPerDeath);
-        currentScore -= randomScore;
-        ShowCurrentScore();
     }
 }

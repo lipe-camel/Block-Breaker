@@ -24,7 +24,6 @@ public class Ball : MonoBehaviour
     Paddle paddle;
     ScoreSystem scoreSystem;
 
-
     void Start()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
@@ -64,16 +63,13 @@ public class Ball : MonoBehaviour
     {
         AdjustBallVector();
         AddRotation();
-        PlayDefaultSFX(collision); //for walls and unbreakable blocks
+        PlayDefaultSFX(collision);
     }
 
     private void AdjustBallVector()
     {
-
         float bounceAngle = Mathf.Atan2(rigidBody2D.velocity.y, rigidBody2D.velocity.x) * Mathf.Rad2Deg;
         float magnitude = rigidBody2D.velocity.magnitude;
-
-
         float newAngle = 0;
         if (IsNumInRange(bounceAngle, 0, 90))
         {
@@ -91,10 +87,8 @@ public class Ball : MonoBehaviour
         {
             newAngle = Mathf.Clamp(bounceAngle, -180 + minBounceAngle, -90 - minBounceAngle);
         }
-
         Vector2 newVelocity = new Vector2(Mathf.Cos(newAngle * Mathf.Deg2Rad), Mathf.Sin(newAngle * Mathf.Deg2Rad)) * magnitude;
         rigidBody2D.velocity = newVelocity;
-
     }
 
     private bool IsNumInRange(float num, float min, float max)

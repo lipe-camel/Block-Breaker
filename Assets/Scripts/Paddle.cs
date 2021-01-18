@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-    //    //config params
+    //config params
     [SerializeField] float horizontalScreenUnits = 16f;
     [SerializeField] float minxPos = 1f;
     [SerializeField] float maxPos = 15f;
