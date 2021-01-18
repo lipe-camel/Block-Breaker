@@ -99,7 +99,10 @@ MonoBehaviour:
   collisionSounds: []
   destroySounds:
   - {fileID: 8300000, guid: d8c2647a402143f4697bdd97a05875f3, type: 3}
-  BlockSparklesVFX: {fileID: 100000, guid: db6b5828a337d1e45883531596c13f78, type: 3}
+  - {fileID: 8300000, guid: 452cfdf2b45b1344ca829dbaf6ad4e88, type: 3}
+  BlockDestructionVFX: {fileID: 100000, guid: db6b5828a337d1e45883531596c13f78, type: 3}
+  BlockDamageVFX: {fileID: 100000, guid: a08c1070b34ef1b45ae5caf6e2ff83bc, type: 3}
+  particleOffset: {x: 0.5, y: 0.5, z: 0}
   destroyVFXTime: 1
   hitSprites: []
 --- !u!61 &5671645018605941061
@@ -118,8 +121,8 @@ BoxCollider2D:
   m_Offset: {x: 0.5, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

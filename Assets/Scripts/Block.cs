@@ -7,7 +7,9 @@ public class Block : MonoBehaviour
     [SerializeField] AudioClip[] collisionSounds;
     [SerializeField] AudioClip[] destroySounds;
     [Header("Particle")]
-    [SerializeField] GameObject BlockSparklesVFX;
+    [SerializeField] GameObject BlockDestructionVFX;
+    [SerializeField] GameObject BlockDamageVFX;
+    [SerializeField] Vector3 particleOffset;
     [SerializeField] float destroyVFXTime = 1f;
     [Header("Sprite")]
     [SerializeField] Sprite[] hitSprites;
@@ -44,11 +46,11 @@ public class Block : MonoBehaviour
         }
         if (gameObject.tag == "Unbreakable" && collision.gameObject.tag == "Ball")
         {
-            PlayUnbreakableSFX();
+            HandleUnbreakableHit();
         }
     }
 
-    private void PlayUnbreakableSFX()
+    private void HandleUnbreakableHit()
     {
         AudioClip clip = collisionSounds[Random.Range(0, collisionSounds.Length)];
         AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
@@ -64,9 +66,37 @@ public class Block : MonoBehaviour
         }
         else
         {
-            ShowNextHitSprite();
-            PlayCollisionSFX();
+            ManageBlockDamage();
         }
+    }
+
+    private void ManageBlockDamage()
+    {
+        ShowNextHitSprite();
+        PlayDamageSFX();
+        PlayDamageVFX();
+    }
+
+    private void PlayDamageSFX()
+    {
+        int randomCollisionSound = Random.Range(0, collisionSounds.Length);
+
+        if (collisionSounds[randomCollisionSound] != null)
+        {
+            AudioClip clip = collisionSounds[randomCollisionSound];
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+        }
+        else
+        {
+            Debug.LogError(gameObject.name + " collision audio is missing from array");
+        }
+    }
+
+    private void PlayDamageVFX()
+    {
+        GameObject vFX = Instantiate(BlockDamageVFX, transform.position + particleOffset, transform.rotation);
+        Destroy(vFX, destroyVFXTime);
+
     }
 
     private void ShowNextHitSprite()
@@ -79,21 +109,6 @@ public class Block : MonoBehaviour
         else
         {
             Debug.LogError(gameObject.name + " sprite is missing from array");
-        }
-    }
-
-    private void PlayCollisionSFX()
-    {
-        int randomCollisionSound = Random.Range(0, collisionSounds.Length);
-
-        if (collisionSounds[randomCollisionSound] != null)
-        {
-            AudioClip clip = collisionSounds[randomCollisionSound];
-            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
-        }
-        else
-        {
-            Debug.LogError(gameObject.name + " collision audio is missing from array");
         }
     }
 
@@ -114,7 +129,7 @@ public class Block : MonoBehaviour
 
     private void PlayDestroyBlockVFX()
     {
-        GameObject sparkles = Instantiate(BlockSparklesVFX, transform.position, transform.rotation);
-        Destroy(sparkles, destroyVFXTime);
+        GameObject vFX = Instantiate(BlockDestructionVFX, transform.position + particleOffset, transform.rotation);
+        Destroy(vFX, destroyVFXTime);
     }
 }
