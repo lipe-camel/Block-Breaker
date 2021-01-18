@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1306389465329272659}
   - component: {fileID: 1306389465329272660}
-  - component: {fileID: 1306389465329272658}
   - component: {fileID: 1306389465329272657}
+  - component: {fileID: 6988740061378981184}
   m_Layer: 0
   m_Name: Breakable Block 3HIT (0)
   m_TagString: Breakable
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e7ea485adba91424aa1bbf508e4bddac, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.02849722, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 33593331028841b41a98ad00cc390d19, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,7 +84,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1306389465329272658
+--- !u!114 &1306389465329272657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306389465329272661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c7608a8058ed143beabf37b1dee358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroySounds:
+  - {fileID: 8300000, guid: 140c580072a02c74584862e1a285588a, type: 3}
+  - {fileID: 8300000, guid: b4d283d909d809344b6ba465429025f1, type: 3}
+  BlockSparklesVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
+  destroyVFXTime: 1
+  hitSprites:
+  - {fileID: 21300000, guid: 7c642e8e0d1d8244ab689b424847b7b2, type: 3}
+  - {fileID: 21300000, guid: 68c9fe5b5dcdf0e4992914ed1cf4e565, type: 3}
+--- !u!61 &6988740061378981184
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,24 +130,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1306389465329272657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306389465329272661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c7608a8058ed143beabf37b1dee358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroySounds:
-  - {fileID: 8300000, guid: 140c580072a02c74584862e1a285588a, type: 3}
-  - {fileID: 8300000, guid: b4d283d909d809344b6ba465429025f1, type: 3}
-  BlockSparklesVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
-  destroyVFXTime: 1
-  maxHits: 3
-  hitSprites:
-  - {fileID: 21300000, guid: bfb56d122f8641b4e8d11d730309f8bb, type: 3}
-  - {fileID: 21300000, guid: 97823d3567e1b5241be4d5a69290ef90, type: 3}

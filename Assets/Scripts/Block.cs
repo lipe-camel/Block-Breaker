@@ -37,7 +37,7 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(gameObject.tag == "Breakable")
+        if(gameObject.tag == "Breakable" && collision.gameObject.tag == "Ball")
         {
             HandleHit();
         }

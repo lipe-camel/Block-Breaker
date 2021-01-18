@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 322273174583276279}
   - component: {fileID: 322273174583276276}
-  - component: {fileID: 322273174583276278}
+  - component: {fileID: 5981802851616378683}
+  - component: {fileID: 7540365545827001071}
+  - component: {fileID: 2684530475821082426}
   - component: {fileID: 322273174583276273}
   m_Layer: 0
   m_Name: Paddle
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5b80a6b4422d06419a85045ec8c15c7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e07c9f689ff05147be6509dd0f17a09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &322273174583276278
-PolygonCollider2D:
+--- !u!58 &5981802851616378683
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,7 +99,39 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.5, y: -0.25}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!58 &7540365545827001071
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322273174583276277}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: -0.25}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!61 &2684530475821082426
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322273174583276277}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -107,17 +141,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.60080147, y: 0.21673918}
-      - {x: 0.5218687, y: 0.25012404}
-      - {x: -0.51196194, y: 0.25277174}
-      - {x: -0.7449317, y: 0.15298927}
-      - {x: -1.0027719, y: 0.043097854}
-      - {x: -1, y: -0.25}
-      - {x: 1, y: -0.25}
-      - {x: 0.9972286, y: 0.045366883}
-      - {x: 0.8359375, y: 0.11567938}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &322273174583276273
 MonoBehaviour:
   m_ObjectHideFlags: 0
