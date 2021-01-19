@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    [SerializeField] Animator transition;
+    [SerializeField] float transitionTime = 1f;
     [SerializeField] AudioClip buttonPressSound;
     public void PlayButtonSound()
     {
@@ -10,14 +13,21 @@ public class SceneLoader : MonoBehaviour
     }
 
 
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelIndex);
+    }
+
     public void LoadNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void LoadPreviousScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
     public void RestartScene()
@@ -25,24 +35,24 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void LoadCredits()
+    {
+        StartCoroutine(LoadLevel(0));
+    }
+
     public void LoadStartScene()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(LoadLevel(1));
+    }
+
+    public void LoadEndScene()
+    {
+        StartCoroutine(LoadLevel(SceneManager.sceneCountInBuildSettings - 1));
     }
 
     public void EraseScore()
     {
         FindObjectOfType<ScoreSystem>().EraseScore();
-    }
-
-    public void LoadLoseScene()
-    {
-        SceneManager.LoadScene("End Screen");
-    }
-
-    public void LoadCredits()
-    {
-        SceneManager.LoadScene("Credits");
     }
 
     public void QuitGame()
