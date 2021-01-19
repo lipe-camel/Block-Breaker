@@ -18,6 +18,7 @@ public class LoseCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+        FindObjectOfType<ScoreSystem>().AddToDeathCount();
         Invoke("Revive", timeUntillRevive);
     }
 

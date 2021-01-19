@@ -14,7 +14,7 @@ public class ScoreSystem : MonoBehaviour
     //status
     int currentScore = 0;
     int maxCombo;
-
+    int deathCount;
 
     //cached references
     Ball ball;
@@ -86,6 +86,11 @@ public class ScoreSystem : MonoBehaviour
             maxCombo = ball.ComboNumber();
         }
         return maxCombo;
+    }
+
+    public int AddToDeathCount()
+    {
+        return deathCount++;
     }
 
     public void EraseScore()
