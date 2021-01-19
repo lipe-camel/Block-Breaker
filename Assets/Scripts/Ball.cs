@@ -77,10 +77,10 @@ public class Ball : MonoBehaviour
         AdjustBallVector();
         AddRotation();
         PlayDefaultSFX(collision);
-        ActivateCombo(collision);
+        ManageCombo(collision);
     }
 
-    private void ActivateCombo(Collision2D collision)
+    private void ManageCombo(Collision2D collision)
     {
         if (hasStarted && (collision.gameObject.tag == "Breakable" || collision.gameObject.tag == "Paddle"))
         {
@@ -90,8 +90,8 @@ public class Ball : MonoBehaviour
         {
             comboFactor = 0;
         }
-        Debug.Log(comboFactor);
     }
+
     public int ComboNumber()
     {
         return comboFactor;
@@ -149,7 +149,7 @@ public class Ball : MonoBehaviour
     {
         rigidBody2D.rotation = 0; rigidBody2D.freezeRotation = true;
         hasStarted = false;
-        comboFactor = 0;
+        comboFactor = 0; 
         AudioSource.PlayClipAtPoint(reviveSound, Camera.main.transform.position);
     }
 

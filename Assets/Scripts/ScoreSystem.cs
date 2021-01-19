@@ -11,9 +11,10 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI comboText;
 
-
     //status
     int currentScore = 0;
+    int maxCombo;
+
 
     //cached references
     Ball ball;
@@ -39,11 +40,6 @@ public class ScoreSystem : MonoBehaviour
         ShowCurrentScore();
     }
 
-    public void SearchNewBall()
-    {
-        ball = FindObjectOfType<Ball>();
-    }
-
     private void Update()
     {
         ShowCurrentCombo();
@@ -53,9 +49,10 @@ public class ScoreSystem : MonoBehaviour
     {
         int randomScore = Random.Range(Mathf.RoundToInt(percentageOfMinimumScore * pointsPerBlockDestroyed), pointsPerBlockDestroyed+1);
         int scoreComboed = randomScore * ball.ComboNumber();
-        Debug.Log(scoreComboed);
+        //Debug.Log(scoreComboed);
         currentScore += scoreComboed;
         ShowCurrentScore();
+        Debug.Log(MaxComboNumber());
     }
     public void LoseScore()
     {
@@ -82,8 +79,22 @@ public class ScoreSystem : MonoBehaviour
         comboText.text = "Combo x" + ball.ComboNumber();
     }
 
+    public int MaxComboNumber()
+    {
+        if (maxCombo < ball.ComboNumber())
+        {
+            maxCombo = ball.ComboNumber();
+        }
+        return maxCombo;
+    }
+
     public void EraseScore()
     {
         Destroy(gameObject);
+    }
+
+    public void SearchNewBall()
+    {
+        ball = FindObjectOfType<Ball>();
     }
 }
