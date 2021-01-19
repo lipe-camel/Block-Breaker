@@ -13,10 +13,13 @@ public class Ball : MonoBehaviour
     [SerializeField] float torqueLimit = 10f;
     [Header("Audio")]
     [SerializeField] AudioClip[] ballSounds;
+    [Header("Debug")]
+    [SerializeField] float timeUntillReset = 1f;
 
     //state
     Vector2 paddleToBallVector;
     bool hasStarted = false;
+    int framesSinceLastCollision;
 
     //cached component references (so this valor is found only once)
     Rigidbody2D rigidBody2D;
@@ -41,6 +44,12 @@ public class Ball : MonoBehaviour
             FollowPaddle();
             LaunchOnMouseClick();
         }
+        else
+        {
+            framesSinceLastCollision++;
+        }
+
+        ResetIfBugged();
     }
 
     private void FollowPaddle()
@@ -61,6 +70,8 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        framesSinceLastCollision = 0;
+
         AdjustBallVector();
         AddRotation();
         PlayDefaultSFX(collision);
@@ -114,10 +125,25 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public void ManageDeath()
+    public void ResetBall()
     {
         rigidBody2D.rotation = 0; rigidBody2D.freezeRotation = true;
         hasStarted = false;
+    }
+
+    public void ManageDeath()
+    {
+        ResetBall();
         scoreSystem.LoseScore();
+    }
+
+    private void ResetIfBugged()
+    {
+        float secondsPassed = (1 / Time.deltaTime) * timeUntillReset;
+        if (framesSinceLastCollision >= secondsPassed)
+        {
+            ResetBall();
+        }
+        Debug.Log(secondsPassed);
     }
 }

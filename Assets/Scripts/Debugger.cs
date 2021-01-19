@@ -23,7 +23,7 @@ public class Debugger : MonoBehaviour
         TraverseLevels();
         ToggleLoseColider();
         ToggleAutoplay();
-        ResetBall();
+        ManageResetBallCommand();
     }
 
     private void TraverseLevels()
@@ -54,11 +54,11 @@ public class Debugger : MonoBehaviour
         }
     }
 
-    private void ResetBall()
+    private void ManageResetBallCommand()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            FindObjectOfType<Ball>().ManageDeath();
+            FindObjectOfType<Ball>().ResetBall();
         }
     }
 }
