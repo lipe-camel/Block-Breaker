@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 131673f93214fa340a566fff230e2091, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 041e1fc171c33584f8972791c2a322d0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -106,10 +106,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: ff4184cc4e0374446afa369eb4154070, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: f9088a197cb6e4f49aa3ef31dae1eca7, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: ff4184cc4e0374446afa369eb4154070, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 131673f93214fa340a566fff230e2091, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 0d1761b6845e95246af65c9498c26507, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: d6b3c2cabdc5cfc45ace44e2136354f6, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 0d1761b6845e95246af65c9498c26507, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 041e1fc171c33584f8972791c2a322d0, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -133,6 +133,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Music, Assembly-CSharp
+        m_MethodName: PlayButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2638886883732126985
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +157,7 @@ GameObject:
   - component: {fileID: 2229860774567250541}
   - component: {fileID: 3277361330323377280}
   m_Layer: 5
-  m_Name: Text
+  m_Name: text Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0012664795, y: 0.000015258789}
+  m_AnchoredPosition: {x: -0.0012817383, y: 0}
   m_SizeDelta: {x: 0.60998535, y: -0.17999268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2229860774567250541
@@ -191,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21176471, g: 0.20784314, b: 0.23137255, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -199,18 +211,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b1d05f8db7a98e744879b9acb67e21f5, type: 3}
-    m_FontSize: 137
+    m_Font: {fileID: 12800000, guid: bc9053e474e239848b5cd30112c3f189, type: 3}
+    m_FontSize: 135
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 148
+    m_MaxSize: 188
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'TEXT
-
-'
+  m_Text: START
