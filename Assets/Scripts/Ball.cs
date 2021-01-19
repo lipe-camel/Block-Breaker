@@ -166,6 +166,5 @@ public class Ball : MonoBehaviour
         {
             ResetBall();
         }
-        //Debug.Log(secondsPassed);
     }
 }

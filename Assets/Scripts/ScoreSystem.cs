@@ -33,26 +33,32 @@ public class ScoreSystem : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void ANewLevelHasStarted()
     {
         ball = FindObjectOfType<Ball>();
-
         ShowCurrentScore();
     }
 
     private void Update()
     {
         ShowCurrentCombo();
+        CountMaxCombo();
+    }
+
+    private void CountMaxCombo()
+    {
+        if (maxCombo < ball.ComboNumber())
+        {
+            maxCombo = ball.ComboNumber();
+        }
     }
 
     public void AddToScore()
     {
         int randomScore = Random.Range(Mathf.RoundToInt(percentageOfMinimumScore * pointsPerBlockDestroyed), pointsPerBlockDestroyed+1);
         int scoreComboed = randomScore * ball.ComboNumber();
-        //Debug.Log(scoreComboed);
         currentScore += scoreComboed;
         ShowCurrentScore();
-        Debug.Log(MaxComboNumber());
     }
     public void LoseScore()
     {
@@ -81,11 +87,17 @@ public class ScoreSystem : MonoBehaviour
 
     public int MaxComboNumber()
     {
-        if (maxCombo < ball.ComboNumber())
-        {
-            maxCombo = ball.ComboNumber();
-        }
         return maxCombo;
+    }
+
+    public int DeathCount()
+    {
+        return deathCount;
+    }
+
+    public int CurrentScore()
+    {
+        return currentScore;
     }
 
     public int AddToDeathCount()
@@ -96,10 +108,5 @@ public class ScoreSystem : MonoBehaviour
     public void EraseScore()
     {
         Destroy(gameObject);
-    }
-
-    public void SearchNewBall()
-    {
-        ball = FindObjectOfType<Ball>();
     }
 }

@@ -17,7 +17,7 @@ public class Level : MonoBehaviour
     private void Start()
     {
         ball = FindObjectOfType<Ball>();
-        FindObjectOfType<ScoreSystem>().SearchNewBall();
+        FindObjectOfType<ScoreSystem>().ANewLevelHasStarted();
     }
 
     public void CountBlocks()
