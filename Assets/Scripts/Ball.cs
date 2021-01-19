@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
     [SerializeField] float torqueLimit = 10f;
     [Header("Audio")]
     [SerializeField] AudioClip[] ballSounds;
+    [SerializeField] AudioClip reviveSound;
     [Header("Debug")]
     [SerializeField] float timeUntillReset = 1f;
 
@@ -20,6 +21,7 @@ public class Ball : MonoBehaviour
     Vector2 paddleToBallVector;
     bool hasStarted = false;
     int framesSinceLastCollision;
+    int comboFactor = 1;
 
     //cached component references (so this valor is found only once)
     Rigidbody2D rigidBody2D;
@@ -75,6 +77,24 @@ public class Ball : MonoBehaviour
         AdjustBallVector();
         AddRotation();
         PlayDefaultSFX(collision);
+        ActivateCombo(collision);
+    }
+
+    private void ActivateCombo(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Breakable")
+        {
+            comboFactor++;
+        }
+        else
+        {
+            comboFactor = 1;
+        }
+        Debug.Log(comboFactor);
+    }
+    public int ComboNumber()
+    {
+        return comboFactor;
     }
 
     private void AdjustBallVector()
@@ -129,6 +149,8 @@ public class Ball : MonoBehaviour
     {
         rigidBody2D.rotation = 0; rigidBody2D.freezeRotation = true;
         hasStarted = false;
+        AudioSource.PlayClipAtPoint(reviveSound, Camera.main.transform.position);
+
     }
 
     public void ManageDeath()
@@ -144,6 +166,6 @@ public class Ball : MonoBehaviour
         {
             ResetBall();
         }
-        Debug.Log(secondsPassed);
+        //Debug.Log(secondsPassed);
     }
 }

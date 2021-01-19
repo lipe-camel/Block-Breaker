@@ -13,6 +13,9 @@ public class ScoreSystem : MonoBehaviour
     //status
     int currentScore = 0;
 
+    //cached references
+    Ball ball;
+
     private void Awake() //singleton pattern
     {
         int gameStatusCount = FindObjectsOfType<ScoreSystem>().Length;
@@ -29,6 +32,8 @@ public class ScoreSystem : MonoBehaviour
 
     private void Start()
     {
+        ball = FindObjectOfType<Ball>();
+
         ShowCurrentScore();
     }
 
@@ -36,7 +41,9 @@ public class ScoreSystem : MonoBehaviour
     public void AddToScore()
     {
         int randomScore = Random.Range(Mathf.RoundToInt(percentageOfMinimumScore * pointsPerBlockDestroyed), pointsPerBlockDestroyed);
-        currentScore += randomScore;
+        int scoreComboed = randomScore * ball.ComboNumber();
+        Debug.Log(scoreComboed);
+        currentScore += scoreComboed;
         ShowCurrentScore();
     }
     public void LoseScore()

@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e63b3fd669b4d4ca2445ca3f05950f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xLaunchVelocity: 4
+  xLaunchVelocity: 5
   yLaunchVelocity: 10
   minBounceAngle: 10
   rotationFactor: 3
@@ -146,6 +146,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 07a1975f1434bfb4099e9afac3b862d8, type: 3}
   - {fileID: 8300000, guid: cfe62f4bc6a8ccf4d97b430ed3a8b3c7, type: 3}
   - {fileID: 8300000, guid: f9e8d687dd835dc40858e3299b88690f, type: 3}
+  reviveSound: {fileID: 8300000, guid: 9965871db000bf940b3f124507236433, type: 3}
   timeUntillReset: 7
 --- !u!82 &216505303768612874
 AudioSource:

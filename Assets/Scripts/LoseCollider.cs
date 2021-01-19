@@ -4,7 +4,6 @@ public class LoseCollider : MonoBehaviour
 {
     [SerializeField] float timeUntillRevive = 1f;
     [SerializeField] AudioClip deathSound;
-    [SerializeField] AudioClip reviveSound;
 
     //cached component references
     Collider2D thisCollider2D;
@@ -24,7 +23,6 @@ public class LoseCollider : MonoBehaviour
 
     private void Revive()
     {
-        AudioSource.PlayClipAtPoint(reviveSound, Camera.main.transform.position);
         ball.ManageDeath();
     }
 
