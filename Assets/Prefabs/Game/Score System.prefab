@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 5405152543577795887}
   - component: {fileID: 6626744174749824612}
   m_Layer: 0
-  m_Name: Game Session
+  m_Name: Score System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,5 +280,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerBlockDestroyed: 10
   pointsPerDeath: 25
-  percentageOfMinimumScore: 70
+  percentageOfMinimumScore: 0.7
+  maxTotalPoints: 999999999
   scoreText: {fileID: 2638044992534392534}
