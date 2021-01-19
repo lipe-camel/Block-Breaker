@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeUntillNextLevel: 1
+  gravityAfterWinning: 2
   victorySound: {fileID: 8300000, guid: be5e2361e37ff6643a34abf495356991, type: 3}
+  victoryParticle: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
 --- !u!114 &36177179545525471
 MonoBehaviour:
   m_ObjectHideFlags: 0

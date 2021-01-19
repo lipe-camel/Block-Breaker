@@ -2,10 +2,22 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    //config params
+    [SerializeField] float timeUntillNextLevel = 1f;
+    [SerializeField] float gravityAfterWinning = 1f;
+    [SerializeField] AudioClip victorySound;
+    [SerializeField] GameObject victoryParticle;
+
     //state
     int breakableBlocks;
-    [SerializeField] float timeUntillNextLevel = 1f;
-    [SerializeField] AudioClip victorySound;
+
+    //cached references
+    Ball ball;
+
+    private void Start()
+    {
+        ball = FindObjectOfType<Ball>();
+    }
 
     public void CountBlocks()
     {
@@ -24,7 +36,9 @@ public class Level : MonoBehaviour
     private void WonTheLevel()
     {
         AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position);
-        FindObjectOfType<Ball>().GetComponent<Rigidbody2D>().gravityScale = 1;
+        Instantiate(victoryParticle, ball.transform.position , transform.rotation);
+
+        ball.GetComponent<Rigidbody2D>().gravityScale = gravityAfterWinning;
         FindObjectOfType<LoseCollider>().gameObject.SetActive(false);
         Invoke("LoadNextScene", timeUntillNextLevel);
     }
