@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
     Vector2 paddleToBallVector;
     bool hasStarted = false;
     int framesSinceLastCollision;
-    int comboFactor = 1;
+    int comboFactor;
 
     //cached component references (so this valor is found only once)
     Rigidbody2D rigidBody2D;
@@ -82,13 +82,13 @@ public class Ball : MonoBehaviour
 
     private void ActivateCombo(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Breakable")
+        if (hasStarted && (collision.gameObject.tag == "Breakable" || collision.gameObject.tag == "Paddle"))
         {
             comboFactor++;
         }
         else
         {
-            comboFactor = 1;
+            comboFactor = 0;
         }
         Debug.Log(comboFactor);
     }
@@ -138,7 +138,7 @@ public class Ball : MonoBehaviour
 
     private void PlayDefaultSFX(Collision2D collision)
     {
-        if (hasStarted && (collision.gameObject.tag == "Untagged"))
+        if (hasStarted && (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Paddle"))
         {
             AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
             audioSource.PlayOneShot(clip);
@@ -149,8 +149,8 @@ public class Ball : MonoBehaviour
     {
         rigidBody2D.rotation = 0; rigidBody2D.freezeRotation = true;
         hasStarted = false;
+        comboFactor = 0;
         AudioSource.PlayClipAtPoint(reviveSound, Camera.main.transform.position);
-
     }
 
     public void ManageDeath()

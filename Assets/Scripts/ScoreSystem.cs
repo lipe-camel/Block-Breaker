@@ -9,6 +9,8 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField][Range(0,1)] float percentageOfMinimumScore;
     [SerializeField] int maxTotalPoints = 999999999;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI comboText;
+
 
     //status
     int currentScore = 0;
@@ -37,10 +39,19 @@ public class ScoreSystem : MonoBehaviour
         ShowCurrentScore();
     }
 
+    public void SearchNewBall()
+    {
+        ball = FindObjectOfType<Ball>();
+    }
+
+    private void Update()
+    {
+        ShowCurrentCombo();
+    }
 
     public void AddToScore()
     {
-        int randomScore = Random.Range(Mathf.RoundToInt(percentageOfMinimumScore * pointsPerBlockDestroyed), pointsPerBlockDestroyed);
+        int randomScore = Random.Range(Mathf.RoundToInt(percentageOfMinimumScore * pointsPerBlockDestroyed), pointsPerBlockDestroyed+1);
         int scoreComboed = randomScore * ball.ComboNumber();
         Debug.Log(scoreComboed);
         currentScore += scoreComboed;
@@ -48,7 +59,7 @@ public class ScoreSystem : MonoBehaviour
     }
     public void LoseScore()
     {
-        int randomScore = Random.Range(Mathf.RoundToInt(percentageOfMinimumScore * pointsPerDeath), pointsPerDeath);
+        int randomScore = Random.Range(Mathf.RoundToInt(percentageOfMinimumScore * pointsPerDeath), pointsPerDeath+1);
         currentScore -= randomScore;
         ShowCurrentScore();
     }
@@ -64,6 +75,11 @@ public class ScoreSystem : MonoBehaviour
             currentScore = maxTotalPoints;
         }
         scoreText.text = currentScore.ToString();
+    }
+
+    private void ShowCurrentCombo()
+    {
+        comboText.text = "Combo x" + ball.ComboNumber();
     }
 
     public void EraseScore()
