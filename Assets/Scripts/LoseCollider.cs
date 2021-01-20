@@ -7,17 +7,19 @@ public class LoseCollider : MonoBehaviour
 
     //cached component references
     Collider2D thisCollider2D;
+    AudioSource audioSource;
     Ball ball;
 
     private void Start()
     {
         ball = FindObjectOfType<Ball>();
         thisCollider2D = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+        audioSource.PlayOneShot(deathSound);
         FindObjectOfType<ScoreSystem>().AddToDeathCount();
         Invoke("Revive", timeUntillRevive);
     }

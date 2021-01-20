@@ -229,18 +229,18 @@ PrefabInstance:
     - target: {fileID: 1324032960045462550, guid: 11afd56c0f8e0a74aa9fe5a19723d86b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 808681209}
+      objectReference: {fileID: 1120891435}
     - target: {fileID: 1324032960045462550, guid: 11afd56c0f8e0a74aa9fe5a19723d86b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadStartScene
       objectReference: {fileID: 0}
     - target: {fileID: 1324032960045462550, guid: 11afd56c0f8e0a74aa9fe5a19723d86b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PlayButtonSound
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 1324032960045462550, guid: 11afd56c0f8e0a74aa9fe5a19723d86b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: SceneLoader, Assembly-CSharp
+      value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1324032960045462550, guid: 11afd56c0f8e0a74aa9fe5a19723d86b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
@@ -821,6 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e1cd42da0031b46a5d3751d3d66426, type: 3}
+--- !u!82 &1120891435 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7871305175826574716, guid: 75e1cd42da0031b46a5d3751d3d66426, type: 3}
+  m_PrefabInstance: {fileID: 1120891434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1619399855
 PrefabInstance:
   m_ObjectHideFlags: 0

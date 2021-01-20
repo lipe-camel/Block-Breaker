@@ -4,8 +4,10 @@ public class Block : MonoBehaviour
 {
     //config params
     [Header("Audio")]
+    [SerializeField] [Range(-20, 0)] int SFXVolume = -10;
     [SerializeField] AudioClip[] collisionSounds;
     [SerializeField] AudioClip[] destroySounds;
+    [SerializeField][Range(-20, 0)] int vocalizedSFXVolume = -2;
     [SerializeField] AudioClip[] vocalizedDeathSounds;
     [Header("Particle")]
     [SerializeField] GameObject BlockDestructionVFX;
@@ -55,7 +57,8 @@ public class Block : MonoBehaviour
     private void PlayUnbreakableSound()
     {
         AudioClip clip = collisionSounds[Random.Range(0, collisionSounds.Length)];
-        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(clip,
+            Camera.main.transform.position + new Vector3(0, 0, SFXVolume));
     }
 
     private void HandleHit()
@@ -99,10 +102,14 @@ public class Block : MonoBehaviour
 
     private void PlaySFX()
     {
-        AudioSource.PlayClipAtPoint(DecideSFXToPlay(), Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(DecideSFXToPlay(),
+            Camera.main.transform.position + new Vector3(0, 0, SFXVolume));
+
         if (vocalizedDeathSounds.Length > 0)
         {
-            AudioSource.PlayClipAtPoint(vocalizedDeathSounds[Random.Range(0, vocalizedDeathSounds.Length)], Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(vocalizedDeathSounds
+                [Random.Range(0, vocalizedDeathSounds.Length)],
+                Camera.main.transform.position + new Vector3(0,0, vocalizedSFXVolume));
         }
 
     }

@@ -6,12 +6,6 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] Animator transition;
     [SerializeField] float transitionTime = 1f;
-    [SerializeField] AudioClip buttonPressSound;
-    public void PlayButtonSound()
-    {
-        AudioSource.PlayClipAtPoint(buttonPressSound, Camera.main.transform.position);
-    }
-
 
     IEnumerator LoadLevel(int levelIndex)
     {

@@ -36,7 +36,7 @@ public class Level : MonoBehaviour
 
     private void WonTheLevel()
     {
-        AudioSource.PlayClipAtPoint(victorySound, Camera.main.transform.position);
+        GetComponent<AudioSource>().PlayOneShot(victorySound);
         Instantiate(victoryParticle, ball.transform.position , transform.rotation);
 
         ball.GetComponent<Rigidbody2D>().gravityScale = gravityAfterWinning;

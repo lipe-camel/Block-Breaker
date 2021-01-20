@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1306389465329272657}
   - component: {fileID: -4581416786375281630}
   m_Layer: 0
-  m_Name: Unbreakable Block (0)
+  m_Name: Metal(0)
   m_TagString: Unbreakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,11 +96,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c7608a8058ed143beabf37b1dee358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXVolume: -4
   collisionSounds:
   - {fileID: 8300000, guid: bfd0575cbe7c65248addc0af3051866b, type: 3}
   - {fileID: 8300000, guid: 1359e0828d0f3674787d170e8dadee61, type: 3}
   destroySounds: []
-  BlockSparklesVFX: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
+  vocalizedSFXVolume: -2
+  vocalizedDeathSounds: []
+  BlockDestructionVFX: {fileID: 0}
+  BlockDamageVFX: {fileID: 0}
+  particleOffset: {x: 0, y: 0, z: 0}
   destroyVFXTime: 1
   hitSprites: []
 --- !u!61 &-4581416786375281630

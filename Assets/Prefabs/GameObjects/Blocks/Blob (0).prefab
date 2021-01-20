@@ -96,10 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c7608a8058ed143beabf37b1dee358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXVolume: -10
   collisionSounds: []
   destroySounds:
   - {fileID: 8300000, guid: d8c2647a402143f4697bdd97a05875f3, type: 3}
   - {fileID: 8300000, guid: 452cfdf2b45b1344ca829dbaf6ad4e88, type: 3}
+  vocalizedSFXVolume: -2
   vocalizedDeathSounds:
   - {fileID: 8300000, guid: 33076145d41ae4d459fd28ac80439589, type: 3}
   - {fileID: 8300000, guid: 47dbca922a516ee438ad2453086e553d, type: 3}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1306389465329272657}
   - component: {fileID: 5671645018605941061}
   m_Layer: 0
-  m_Name: Block eye (0)
+  m_Name: Eye (0)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,10 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c7608a8058ed143beabf37b1dee358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXVolume: -9
   collisionSounds: []
   destroySounds:
   - {fileID: 8300000, guid: d8c2647a402143f4697bdd97a05875f3, type: 3}
   - {fileID: 8300000, guid: 452cfdf2b45b1344ca829dbaf6ad4e88, type: 3}
+  vocalizedSFXVolume: -2
+  vocalizedDeathSounds: []
   BlockDestructionVFX: {fileID: 100000, guid: db6b5828a337d1e45883531596c13f78, type: 3}
   BlockDamageVFX: {fileID: 100000, guid: a08c1070b34ef1b45ae5caf6e2ff83bc, type: 3}
   particleOffset: {x: 0.5, y: 0.5, z: 0}
