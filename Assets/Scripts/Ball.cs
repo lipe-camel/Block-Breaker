@@ -20,7 +20,6 @@ public class Ball : MonoBehaviour
     //state
     Vector2 paddleToBallVector;
     bool hasStarted = false;
-    int framesSinceLastCollision;
     int comboFactor;
 
     //cached component references (so this valor is found only once)
@@ -46,12 +45,6 @@ public class Ball : MonoBehaviour
             FollowPaddle();
             LaunchOnMouseClick();
         }
-        else
-        {
-            framesSinceLastCollision++;
-        }
-
-        ResetIfBugged();
     }
 
     private void FollowPaddle()
@@ -72,12 +65,12 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        framesSinceLastCollision = 0;
-
         AdjustBallVector();
         AddRotation();
         PlayDefaultSFX(collision);
         ManageCombo(collision);
+        CancelInvoke();
+        ResetIfBugged();
     }
 
     private void ManageCombo(Collision2D collision)
@@ -150,7 +143,8 @@ public class Ball : MonoBehaviour
         rigidBody2D.rotation = 0; rigidBody2D.freezeRotation = true;
         hasStarted = false;
         comboFactor = 0; 
-        AudioSource.PlayClipAtPoint(reviveSound, Camera.main.transform.position);
+        audioSource.PlayOneShot(reviveSound);
+        Debug.Log("Resetting");
     }
 
     public void ManageDeath()
@@ -161,10 +155,9 @@ public class Ball : MonoBehaviour
 
     private void ResetIfBugged()
     {
-        float secondsPassed = (1 / Time.deltaTime) * timeUntillReset;
-        if (framesSinceLastCollision >= secondsPassed)
+        if (hasStarted)
         {
-            ResetBall();
+            Invoke("ResetBall", timeUntillReset);
         }
     }
 }
