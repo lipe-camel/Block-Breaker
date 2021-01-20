@@ -82,7 +82,7 @@ public class Ball : MonoBehaviour
 
     private void ManageCombo(Collision2D collision)
     {
-        if (hasStarted && (collision.gameObject.tag == "Breakable" || collision.gameObject.tag == "Paddle"))
+        if (hasStarted && (collision.gameObject.tag == "Breakable" || collision.gameObject.tag == "Paddle" || collision.gameObject.tag == "Unbreakable"))
         {
             comboFactor++;
         }
