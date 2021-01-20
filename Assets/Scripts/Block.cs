@@ -6,6 +6,7 @@ public class Block : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AudioClip[] collisionSounds;
     [SerializeField] AudioClip[] destroySounds;
+    [SerializeField] AudioClip[] vocalizedDeathSounds;
     [Header("Particle")]
     [SerializeField] GameObject BlockDestructionVFX;
     [SerializeField] GameObject BlockDamageVFX;
@@ -99,6 +100,11 @@ public class Block : MonoBehaviour
     private void PlaySFX()
     {
         AudioSource.PlayClipAtPoint(DecideSFXToPlay(), Camera.main.transform.position);
+        if (vocalizedDeathSounds.Length > 0)
+        {
+            AudioSource.PlayClipAtPoint(vocalizedDeathSounds[Random.Range(0, vocalizedDeathSounds.Length)], Camera.main.transform.position);
+        }
+
     }
 
     private AudioClip DecideSFXToPlay()

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1306389465329272657}
   - component: {fileID: 6988740061378981184}
   m_Layer: 0
-  m_Name: Block bone (0)
+  m_Name: Bone (0)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ce54a33a7bdef864cab3c799688129d3, type: 3}
   destroySounds:
   - {fileID: 8300000, guid: a23a01c3750a52b438fd2ef58a4fd793, type: 3}
+  vocalizedDeathSounds:
+  - {fileID: 8300000, guid: 3d01cb5d80079394999459d14bee3063, type: 3}
+  - {fileID: 8300000, guid: 31cf12c134d45bd408d033660bf6ae6d, type: 3}
+  - {fileID: 8300000, guid: ca96fee29544c0043b72de8113560577, type: 3}
   BlockDestructionVFX: {fileID: 100000, guid: fcc38b4d514bb364291aeb5298d5f18a, type: 3}
   BlockDamageVFX: {fileID: 100000, guid: 144b5d88effda6d4e9845e0d6aeb401e, type: 3}
   particleOffset: {x: 0.5, y: 1.5, z: 0}
