@@ -144,7 +144,6 @@ public class Ball : MonoBehaviour
         hasStarted = false;
         comboFactor = 0; 
         audioSource.PlayOneShot(reviveSound);
-        Debug.Log("Resetting");
     }
 
     public void ManageDeath()

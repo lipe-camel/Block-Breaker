@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 9058496764365896222}
+  numberToSubtract: 0
 --- !u!1 &9058496764186679104
 GameObject:
   m_ObjectHideFlags: 0

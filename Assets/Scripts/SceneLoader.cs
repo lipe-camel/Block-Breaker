@@ -31,17 +31,22 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadCredits()
     {
-        StartCoroutine(LoadLevel(0));
+        StartCoroutine(LoadLevel(SceneManager.sceneCountInBuildSettings - 1));
     }
 
     public void LoadStartScene()
+    {
+        StartCoroutine(LoadLevel(0));
+    }
+
+    public void LoadFirstLevel()
     {
         StartCoroutine(LoadLevel(1));
     }
 
     public void LoadEndScene()
     {
-        StartCoroutine(LoadLevel(SceneManager.sceneCountInBuildSettings - 1));
+        StartCoroutine(LoadLevel(SceneManager.sceneCountInBuildSettings - 2));
     }
 
     public void EraseScore()
